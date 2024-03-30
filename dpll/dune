@@ -1,0 +1,13 @@
+(env
+ (dev
+  (flags
+   (:standard -warn-error -A -w -3-9-32-34-58)))
+ (release
+  (flags
+   (:standard -warn-error -A -w -58))))
+
+(test
+ (name main)
+ (modules ast dpll parser main)
+ (modules_without_implementation ast)
+ (libraries base angstrom stdio str))
