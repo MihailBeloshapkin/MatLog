@@ -10,4 +10,4 @@
  (name main)
  (modules ast dpll parser tseitin main)
  (modules_without_implementation ast)
- (libraries base angstrom stdio str))
+ (libraries base stdio str))
