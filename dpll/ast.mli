@@ -5,7 +5,9 @@ type bin_op =
 
 type literal = int
 
-(** AST: Or, And operations and literals *)
+(** AST: Операции И, Или, Отрицание и Литералы *)
+(** Отрицание к переменной интерпретируется как литерал,
+    Отрицание к выражению интерпертируется как Not exp, где exp логическое выражение  *)
 type log_e = 
   | Operation of bin_op * log_e * log_e
   | Not of log_e
