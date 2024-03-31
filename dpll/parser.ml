@@ -1,4 +1,3 @@
-
 open Base
 open Stdio
 open Ast
@@ -38,18 +37,7 @@ let token_to_str = function
   | And_t -> "Token[type: mul, val: *]"
   | Lparen_t -> "Token[type: lparen, val: (]"
   | Rparen_t -> "Token[type: rparen, val: )]"
-
-
-(* parser *)
-(*type ast =
-  | Number of int
-  | Binop of ast * token * ast
-  | Neg of ast
-*)
-(* grammar
- * expr -> term + expr | term
- * term -> factor * term | factor
- * factor -> number | '(' expr ')' *)
+;;
 
 let rec parse_factor = function
   | Var_t x :: tl -> (Literal x, tl)
@@ -79,9 +67,6 @@ and parse_expr ls =
   | Or_t :: tl ->
     let (right, l) = parse_expr tl in
     (Operation (Or, left, right), l)
-  (*| Neg_t :: tl ->
-    let (right, l) = parse_expr tl in
-    (Operation (left, Neg_t, right), l)*)
   | _ -> (left, l)
 
 let print_op = function
@@ -101,28 +86,8 @@ let rec print_ast = function
     | Literal i ->
       printf "Literal: %i;" i
 
-(* repl *)
-let print_prompt () =
-  printf "|> ";
-  Out_channel.flush stdout
 
-let rec repl () =
-  print_prompt ();
-  let inp = In_channel.input_line stdin in
-  match inp with
-  | None -> printf "error reading line";
-  | Some str ->
-    let tokens = get_tokens str in
-    match tokens with
-    | [] -> printf ""; repl ()
-    | _ -> 
-      let (root, l) = parse_expr tokens in
-      print_ast root;
-      printf "\n";
-      (*let result = eval root in
-      printf "%d\n" result;*)
-      repl ()
-
+(*
 let _ =
   repl ()
-;;
+;;*)
