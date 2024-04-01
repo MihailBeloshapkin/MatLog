@@ -2,11 +2,8 @@ from z3 import *
 
 
 
-# -1 -- пустая ячейка, -2 -- мина
-def check(n, k):
+ef check(n, k):
     result = None
-
-    #cells = [[Int(f'cell_{r}_{c}') for c in range(len(m[0]))] for r in range(len(m))]
 
     edges = {}
     s = Solver()
